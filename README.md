@@ -23,7 +23,7 @@ git commit -m "提交信息，自己修改"
 ```
 git push
 ```
-4. 最后一步就是contribute，点pull request，将自己的修改推给院士仓库，等待合并
+4. 最后一步就是contribute，点pull request，将自己的修改推给原始仓库，等待合并
 > -- zy
 
 
