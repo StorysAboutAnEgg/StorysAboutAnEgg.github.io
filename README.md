@@ -1,5 +1,5 @@
 ## ‼️ 框架更新通知
-注：将自己的框架格式调整至和仓库一致，或者直接删除5月14号克隆的仓库，将自己的fork更新，然后重新克隆项目，再次启动项目时就不需要cd到原先的egg-planet文件夹下，可以直接用vscode打开StoryAboutAnEgg.github.io文件夹。``ctrl+\```打开终端，直接运行
+注：将自己的框架格式调整至和仓库一致，或者直接删除5月14号克隆的仓库，将自己的fork更新，然后重新克隆项目，再次启动项目时就不需要cd到原先的egg-planet文件夹下，可以直接用vscode打开StoryAboutAnEgg.github.io文件夹。ctrl+\`打开终端，直接运行
 ```
 npm install
 npm run dev
