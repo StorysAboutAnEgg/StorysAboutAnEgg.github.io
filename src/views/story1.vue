@@ -1,6 +1,6 @@
 <template>
   <div class="story1">
-    <h1>This is 1</h1>
+    <h1>This is 1 for cake!</h1>
   </div>
 </template>
 
