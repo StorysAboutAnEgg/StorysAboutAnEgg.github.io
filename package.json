@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "@asika32764/vue-animate": "^3.0.2",
+    "@vitejs/plugin-legacy": "^5.4.1",
     "animate.css": "^4.1.1",
     "chito": "^0.3.2",
     "gsap": "^3.12.5",
     "locomotive-scroll": "^4.1.4",
     "scrolltrigger": "^1.0.1",
+    "terser": "^5.31.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
     "vue2-transitions": "^0.3.0"
