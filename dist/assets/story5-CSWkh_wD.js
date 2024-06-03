@@ -1,1 +1,0 @@
-import{_ as s,c as e,o,a as t}from"./index-DY6eKsyz.js";const c={},_={class:"story5"},n=t("h1",null,"This is 5",-1),r=[n];function a(i,d){return o(),e("div",_,r)}const f=s(c,[["render",a]]);export{f as default};
