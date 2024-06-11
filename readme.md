@@ -25,7 +25,7 @@ git push
 ```
 4. 最后一步就是contribute，点pull request，将自己的修改推给原始仓库，等待合并
 > -- zy
-
+可部署版本存档
 
 
 ## Recommended IDE Setup
