@@ -3,6 +3,7 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { autoComplete, Plugin as importToCDN } from "vite-plugin-cdn-import";
+import externalGlobals from "rollup-plugin-external-globals";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -16,7 +17,7 @@ export default defineConfig({
           name: 'vue',
           var: 'Vue',
           path: `https://unpkg.com/vue@3.2.45/dist/vue.global.js`,
-          
+
         },
         {
           name: 'vue-demi',
@@ -37,6 +38,20 @@ export default defineConfig({
       ],
     }),
   ],
+  build: {
+    rollupOptions: {
+      // 👇 告诉打包工具 "vue-demi" 也是外部依赖项 👇
+      external: ["vue", "element-plus", "vue-demi"],
+      plugins: [
+        externalGlobals({
+          vue: "Vue",
+          "element-plus": "ElementPlus",
+          // 👇 配置 vue-demi 全局变量 👇
+          "vue-demi": "VueDemi",
+        }),
+      ],
+    },
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
