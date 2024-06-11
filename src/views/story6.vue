@@ -205,15 +205,24 @@
       <img src="@/assets/story6/p15.png" alt="" class="pageId2">
     </div>
     <div v-if="isCurrentPage[15]" style="display:flex;justify-content: center;">
-      <img src="@/assets/story6/16-onion.png" alt="" style="position:absolute;top: 30vh;left:35vw;width:25vw"
-        class="animate__animated animate__fadeIn">
-      <img src="@/assets/story6/16-字上.png" alt="" style="position:absolute;top: 6vh;left:35vw;width:30vw"
-        class="animate__animated animate__bounceInUp">
-      <img src="@/assets/story6/16-字下.png" alt="" style="position:absolute;top: 70vh;left:35vw;width:30vw"
-        class="animate__animated animate__fadeInDown">
-      <img src="@/assets/story6/乱入的zy.png" alt="" @click="gotoMenu" class="imgZY" v-if="animateShow[currentPage]>0">
-      <img src="@/assets/story6/乱入的zy-字.png" alt="" class="imgZYWord" v-if="animateShow[currentPage]>4">
-      <img src="@/assets/story6/乱入arrow.png" alt="" class="imgZYArrow" :class="{'animate__animated animate__swing':animateShow[currentPage]>1,'jump':animateShow[currentPage]>3}"  v-if="animateShow[currentPage]>2">
+      <img src="@/assets/story6/16-onion.png" alt="" style="position:absolute;top: 30vh;left:35vw;width:25vw;z-index:2"
+        class="animate__animated animate__fadeIn"
+        :class="{ 'animate__animated animate__fadeIn': !ifGotoMenu, 'animate__animated animate__rollOut': ifGotoMenu, }">
+      <img src="@/assets/story6/16-字上.png" alt="" style="position:absolute;top: 6vh;left:35vw;width:30vw;z-index:2"
+        :class="{ 'animate__animated animate__bounceInUp': !ifGotoMenu, 'animate__animated animate__rollOut': ifGotoMenu, }">
+      <img src="@/assets/story6/16-字下.png" alt="" style="position:absolute;top: 70vh;left:35vw;width:30vw;z-index:2"
+        :class="{ 'animate__animated animate__fadeInDown': !ifGotoMenu, 'animate__animated animate__rollOut': ifGotoMenu, }">
+      <img src="@/assets/story6/16-光.png" alt=""
+        style="position:absolute;top: 16vh;width:40vw;left: 46vw; transform: translateX(-50%);z-index:1;"
+        v-if="animateShow[currentPage] > 1"
+        :class="{ 'lighting': animateShow[currentPage] > 1 && !ifGotoMenu, 'animate__animated animate__rollOut': ifGotoMenu, }">
+      <img src="@/assets/story6/乱入的zy.png" alt="" @click="gotoMenu" style="opacity: 0;position: absolute;width: 8vw;right: 6vw; bottom: 6vh; z-index: 5;" v-if="animateShow[currentPage] > 0"
+        :class="{ 'imgZY':!ifGotoMenu,'animate__animated animate__rollOut': ifGotoMenu, }">
+      <img src="@/assets/story6/乱入的zy-字.png" alt="" class="imgZYWord" v-if="animateShow[currentPage] > 4"
+        :class="{ 'animate__animated animate__fadeInDown': !ifGotoMenu, 'animate__animated animate__rollOut': ifGotoMenu, }">
+      <img src="@/assets/story6/乱入arrow.png" alt="" class="imgZYArrow"
+        :class="{ 'animate__animated animate__swing': animateShow[currentPage] > 1 && !ifGotoMenu, 'jump': animateShow[currentPage] > 3 && !ifGotoMenu, 'animate__animated animate__rollOut': ifGotoMenu, }"
+        v-if="animateShow[currentPage] > 2">
     </div>
 
   </div>
@@ -242,7 +251,7 @@ export default {
       animateShow: new Array(16).fill(0),
       showLeftArrow: false,
       showRightArrow: true,
-
+      ifGotoMenu: false,
     }
   },
   mounted() {
@@ -252,8 +261,11 @@ export default {
     document.removeEventListener('keydown', this.handleKeydown);
   },
   methods: {
-    gotoMenu(){
-      this.$router.push('/menu');
+    gotoMenu() {
+      this.ifGotoMenu = true;
+      setTimeout(() => {
+        this.$router.push('/menu');
+      }, 1000);
     },
     showAni(c) {
       for (let i = 0; i < this.animateCount[c]; i++) {
@@ -429,12 +441,10 @@ export default {
   0%,
   100% {
     width: 8vw;
-    /* 开始时不透明 */
   }
 
   50% {
     width: 8.5vw;
-    /* 中间变为半透明 */
     transform: rotate(1deg);
   }
 }
@@ -461,7 +471,7 @@ export default {
 
   0%,
   100% {
-    opacity: 0;
+    opacity: 0.2;
     /* 开始时不透明 */
   }
 
@@ -503,14 +513,25 @@ export default {
   }
 }
 
+@keyframes ChangeSize {
+
+  0%,
+  100% {
+    width: 40vw;
+  }
+
+  50% {
+    width: 41vw;
+  }
+}
+
+.lighting {
+  animation: breath2 2s 0s infinite, ChangeSize 1s 0s infinite;
+  opacity: 0;
+}
+
 .imgZY {
   animation: breath2 2s 1s infinite;
-  opacity: 0;
-  position: absolute;
-  width: 8vw;
-  right: 6vw;
-  bottom: 6vh;
-  z-index:5;
 }
 
 .imgZYArrow {
@@ -528,15 +549,18 @@ export default {
   right: 18vw;
 }
 
-@keyframes Jump{
-  0%,100% {
+@keyframes Jump {
+
+  0%,
+  100% {
     transform: rotate(-15deg) scale(1);
   }
+
   50% {
     transform: rotate(0deg) scale(1.05);
   }
 }
-.jump{
+
+.jump {
   animation: Jump 1.5s 0s infinite;
-}
-</style>
+}</style>
