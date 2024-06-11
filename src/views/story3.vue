@@ -1,11 +1,9 @@
 <template>
-  <!-- <div class="story3">
-      <h1>This is 3</h1>
-  </div> -->
   <BackgroundChanger>
     <div class="page">
       <img src="../assets/story3/开场蛋.png" alt="" class="animate__animated animate__bounceInUp" style="width:30vw;">
-      <img src="../assets/story3/开场白.png" alt="" class="floating animate__animated animate__bounceInDown" style="width:30vw;">
+      <img src="../assets/story3/开场白.png" alt="" class="floating animate__animated animate__bounceInDown"
+        style="width:30vw;">
     </div>
     <div class="page">
       <img src="../assets/story3/1.png" alt="" class="image1 imageType">
@@ -65,12 +63,13 @@
     <div class="page">
       <img src="../assets/story3/16.png" alt="" class="image16 imageType">
     </div>
-    <div class="page" @keydown.space.prevent="handleSpacePress">
+    <div class="page" ref="lastPage">
       <img src="../assets/story3/17-字.png" alt="" id="" class="imageType" z-index:1>
       <img src="../assets/story3/17.png" class="imageType" alt="">
       <img src="../assets/story3/空格图标.png" alt="" class="space">
+      <img src="../assets/story3/17-提示.png" alt="" v-if="showRouterTip"
+        style="position: absolute;width: 20vw;bottom:13vh;right:20vw" class="animate__animated animate__fadeInDown">
     </div>
-
   </BackgroundChanger>
 </template>
 
@@ -91,6 +90,7 @@ export default {
     return {
       isIntersecting: false, // 用于追踪元素是否进入视口
       animationState: 0, // 0: 未触发, 1: 已经触发进入动画
+      showRouterTip: false
     }
   },
   mounted() {
@@ -101,10 +101,12 @@ export default {
       this.angry();
       ScrollTrigger.refresh();
     }, 500);
-
+    window.addEventListener('keydown', this.handleSpacePress);
+    window.addEventListener('scroll', this.handleScrollToBottom);
   },
   beforeUnmount() {
-    window.removeEventListener('scroll', this.handleScroll)
+    window.removeEventListener('keydown', this.handleSpacePress);
+    window.removeEventListener('scroll', this.handleScrollToBottom);
   },
   methods: {
     imageTroll() {
@@ -394,7 +396,7 @@ export default {
         scale: "1",
         repeat: -1,
         yoyo: true,
-        opacity: "0.3"
+        opacity: "0.1"
       });
       gsap.to(".light", {
         duration: 3.5,
@@ -506,16 +508,33 @@ export default {
         rotate: -2,
       });
     },
+    handleScrollToBottom() {
+      if (window.scrollY > this.lastScrollY) {
+        // 向下滚动
+        if ((window.scrollY + window.innerHeight) >= (document.documentElement.scrollHeight - 100)) {
+          setTimeout(() => {
+            this.showRouterTip = true
+          }, 600)
+        }
+      } else {
+        // 向上滚动
+        this.showRouterTip = false
+      }
+      this.lastScrollY = window.scrollY
+    },
     jumpToHome() {
-
+      this.$router.push('/menu');
     },
     handleSpacePress(event) {
-      console.log('空格键被按下');
-      // 阻止空格键的默认行为，例如页面滚动
-      event.preventDefault();
-      // 这里可以执行您希望空格键按下时的操作
-      // 例如跳转页面、播放/暂停动画等
-      this.$router.push('/menu');
+      if (event.code === 'Space') {
+        gsap.to(this.$refs.lastPage, {
+          duration: 2, // 动画持续时间，可以根据需要调整
+          opacity: 0,
+          onComplete: () => {
+            this.jumpToHome(); // 跳转到 /menu 路由
+          }
+        });
+      }
     },
   }
 
