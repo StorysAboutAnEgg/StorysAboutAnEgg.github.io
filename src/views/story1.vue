@@ -89,10 +89,11 @@
       <img  src="/src/assets/story1/page15/蒸汽.png" class="image-layer somke" style="z-index: 3;" key="3">
       <img  src="/src/assets/story1/page15/我膨胀了.png" class="image-layer dialog-box" style="z-index: 4;" key="4">
     </div>
-    <div class="image-container16" :class="{ 'visible': scrolled15,'hidden': scrolled16 }">
+    <div @click="goto('/menu')" class="image-container16" :class="{ 'visible': scrolled15,'hidden': scrolled16 }">
       <img  src="/src/assets/story1/page16/碗.png" class="image-layer" style="z-index: 1;" key="1">
       <img  src="/src/assets/story1/page16/对话1.png" class="image-layer dialog-box2" style="z-index: 2;" key="2">
       <img  src="/src/assets/story1/page16/对话2.png" class="image-layer dialog-box3" style="z-index: 3;" key="3">
+      <img @click="goto('/menu')" src="/src/assets/story1/back.png" class="back" >
     </div>
   </div>
 </template>
@@ -132,6 +133,9 @@ export default {
     window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
+    goto(route) {
+      this.$router.push(route);
+    },
     startAnimationSequence() {
       setTimeout(() => {
         this.showImage1 = true;
@@ -211,10 +215,21 @@ export default {
 </script>
 
 <style scoped>
+
+.back{
+  position: absolute; 
+  top: 30%; left: 50%; 
+  transform:scale(0.3);
+}
+
+.back:hover{
+  transform: scale(0.5);
+  opacity: 0.5;
+}
 .main-container {
   display: flex;
   transition: transform 0.5s;
-  height: 400%;
+  height: 420%;
 }
 
 
@@ -234,6 +249,7 @@ image-container.visible{
 .image-container.hidden {
   display: none;
 }
+
 
 
 .image-container2.visible {

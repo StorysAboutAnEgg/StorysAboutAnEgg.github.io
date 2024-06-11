@@ -7,7 +7,7 @@ import externalGlobals from "rollup-plugin-external-globals";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-//  base: './', // 添加这行以配置正确的基路径
+  base: './', // 添加这行以配置正确的基路径
   plugins: [
     vue(),
     importToCDN({

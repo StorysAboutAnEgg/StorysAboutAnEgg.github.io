@@ -2,16 +2,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
-    <!-- <div style="height: 100vh">
-      <h1>这是主页</h1>
-      <img @click="goto('/story1')"alt="story1" src="/首页8/黑蛋.png" />
-      <img @click="goto('/story2')"alt="story2" src="/首页8/白蛋.png" />
-      <img @click="goto('/story3')"alt="story3"src="/首页8/荷包蛋.png" />
-      <img @click="goto('/story4')"alt="story4"src="/首页8/黑蛋.png" />
-      <img @click="goto('/story5')"alt="story5"src="/首页8/白蛋.png" />
-      <img @click="goto('/story6')"alt="story6"src="/首页8/荷包蛋.png" />
-      <img @click="goto('/story7')"alt="story7"src="/首页8/黑蛋.png" />    
-    </div> -->
+    
     <div class="body">
       <div class="backg">
         <!-- <img src="../assets/首页8/1.jpg"> -->
@@ -20,7 +11,7 @@
       <div class="shell">
         <div class="box">
           <div class="images">
-            <img alt="story7" src="/首页8/黑蛋.png" />
+            <img src="/首页8/黑蛋.png" />
           </div>
           <div class="content" @click="goto('/story1')">
             <h2>ZeenChin</h2>
@@ -41,13 +32,11 @@
         </div>
 
         <div class="box">
-          <div class="images" >
-            <img src="/首页8/白蛋.png">
+          <div class="images">
+            <img src="../assets/story3/封面蛋.png" >
           </div>
           <div class="content" @click="goto('/story3')">
-            <h2>ZeenChin</h2>
-            <p>The style in the painting integrates temptation, fantasy and strangeness
-            </p>
+            <img src="../assets/story3/封面遮罩.png" alt="">
           </div>
         </div>
 
@@ -75,12 +64,10 @@
 
         <div class="box">
           <div class="images">
-            <img src="/首页8/白蛋.png">
+            <img src="../assets/story6/封面.png" >
           </div>
           <div class="content" @click="goto('/story6')">
-            <h2>ZeenChin</h2>
-            <p>The style in the painting integrates temptation, fantasy and strangeness
-            </p>
+            <img src="../assets/story6/封面遮罩.png" alt="">
           </div>
         </div>
 
@@ -108,7 +95,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 * {
   margin: 0;
   padding: 0;
@@ -194,6 +181,8 @@ export default {
   bottom: 0;
   position: absolute;
   margin: auto;
+  display: inline-block;
+  text-align: center;
 
 }
 
@@ -226,6 +215,25 @@ export default {
 
 .shell .box:hover .content p {
   opacity: 1;
+  /* transform: translateY(100px); */
+}
+
+.shell .box .content img {
+  opacity: 0;
+  transition: all .4s ease-in-out .4s;
+  transform: translateY(100px);
+  /* background-color: rgba(255, 255, 255, 0.7); */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.shell .box:hover .content img {
+  opacity: 1;
+  transform: translate(-50%, -50%);
   /* transform: translateY(100px); */
 }
 

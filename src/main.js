@@ -1,5 +1,5 @@
 // import './assets/main.css'
-import "../node_modules/animate.css";
+import "animate.css";
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
