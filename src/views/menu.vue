@@ -11,7 +11,7 @@
       <div class="shell">
         <div class="box">
           <div class="images">
-            <img src="/首页8/黑蛋.png" />
+            <img src="/首页8/白蛋.png" />
           </div>
           <div class="content" @click="goto('/story1')">
             <h2>ZeenChin</h2>
