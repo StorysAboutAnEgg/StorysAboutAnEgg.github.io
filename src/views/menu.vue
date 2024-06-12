@@ -22,32 +22,28 @@
 
         <div class="box">
           <div class="images">
-            <img src="/首页8/荷包蛋.png">
+            <img src="../assets/story2/封面.png" >
           </div>
           <div class="content" @click="goto('/story2')">
-            <h2>ZeenChin</h2>
-            <p>The style in the painting integrates temptation, fantasy and strangeness
-            </p>
+            <img src="../assets/story2/封面遮罩.png" alt="">
           </div>
         </div>
 
         <div class="box">
           <div class="images">
-            <img src="../assets/story3/封面蛋.png" >
+            <img src="../assets/story3/封面蛋.png" style="scale: 1.2;">
           </div>
           <div class="content" @click="goto('/story3')">
-            <img src="../assets/story3/封面遮罩.png" alt="">
+            <img src="../assets/story3/封面遮罩.png" alt="" style="scale: 1.1;">
           </div>
         </div>
 
         <div class="box">
           <div class="images">
-            <img src="/首页8/黑蛋.png">
+            <img src="../assets/story4/封面.png" >
           </div>
           <div class="content" @click="goto('/story4')">
-            <h2>ZeenChin</h2>
-            <p>The style in the painting integrates temptation, fantasy and strangeness
-            </p>
+            <img src="../assets/story4/封面遮罩.png" alt="">
           </div>
         </div>
 
@@ -64,10 +60,10 @@
 
         <div class="box">
           <div class="images">
-            <img src="../assets/story6/封面.png" >
+            <img src="../assets/story6/封面软蛋.png" >
           </div>
           <div class="content" @click="goto('/story6')">
-            <img src="../assets/story6/封面遮罩.png" alt="">
+            <img src="../assets/story6/封面遮罩洋葱.png" alt="">
           </div>
         </div>
 
@@ -148,7 +144,7 @@ export default {
   margin: 30px;
   transform: rotateY(0deg);
   transition-delay: .1s;
-  border-radius: 5px;
+  border-radius: 30px;
   /* border: #e7d3b796 5px solid; */
 
 }
