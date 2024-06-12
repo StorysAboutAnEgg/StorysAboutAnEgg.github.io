@@ -149,7 +149,7 @@ export default {
       ScrollTrigger.create({
         trigger: '.p9',
         start: 'top top',
-        markers: true,
+        // markers: true,
         end: '+=1000',
         scrub: true,
         pin: true,
@@ -164,7 +164,7 @@ export default {
         scrollTrigger: {
           trigger: ".container",
           pin: true,
-          markers: true,
+          // markers: true,
           scrub: 1,
           // snap: 1 / (sections.length-1),滚动到最近的
           // base vertical scrolling on how wide the container is so it feels more natural.

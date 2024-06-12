@@ -43,13 +43,34 @@
       <img src="../assets/story3/10-怒气右.png" alt="" id="floating10right" class="angry10right">
       <img src="../assets/story3/10-怒气身.png" alt="" id="floating10body" class="angry10body">
     </div>
-    <div class="page">
-      <img src="../assets/story3/11.png" alt="" class="image11 imageType">
+    <div class="page" ref="page11">
+      <!-- <img src="../assets/story3/11.png" alt="" class="image11 imageType"> -->
+      <img src="../assets/story3/11-左.png" alt="" class="image11-left animate__animated animate__shakeY"
+        style="position: absolute;left:10vw;top:0vh;width:30vw;z-index:1" v-if="page11[2]">
+      <img src="../assets/story3/11-左.png" alt="" class="image11-left animate__animated animate__rubberBand"
+        style="position: absolute;right:10vw;top:60vh;width:25vw;opacity: 0.6;z-index:1" v-if="page11[0]">
+      <img src="../assets/story3/11-左.png" alt="" class="image11-left animate__animated animate__shakeX"
+        style="position: absolute;right:30vw;top:-5vh;width:20vw;opacity: 0.9;z-index:1" v-if="page11[0]">
+
+      <img src="../assets/story3/11-中.png" alt="" class="image11" style="position: absolute; left:20vw; width:50vw"
+        v-if="page11[1]" :class="{ 'animate__animated animate__fadeIn': page11[1] }">
+
+      <img src="../assets/story3/11-右.png" alt="" class="image11-right"
+        style="position: absolute; right:10vw;bottom:15vh;right:70vw;width:25vw" v-if="page11[2]"
+        :class="{ 'animate__animated animate__wobble': page11[2] }">
+      <img src="../assets/story3/11-右.png" alt="" class="image11-right"
+        style="position: absolute;opacity: 0.9;bottom:60vh; right:15vw; width:40vw" v-if="page11[0]"
+        :class="{ 'animate__animated animate__shakeY': page11[0] }">
+      <img src="../assets/story3/11-字.png" alt=""
+      style="position: absolute;top:12vh; right:30vw; width:40vw;z-index:1" v-if="page11[4]"
+        :class="{ 'animate__animated animate__fadeInDown': page11[0] }">
     </div>
-    <div class="page">
+    <div class="page" ref="page12">
       <img src="../assets/story3/12.png" alt="" class="image12 imageType">
       <img src="../assets/story3/12-light.png" alt="" id="" class="light">
       <img src="../assets/story3/12-star.png" alt="" id="" class="star">
+      <img src="../assets/story3/12-字.png" alt="" class="animate__animated animate__fadeInDown"
+      style="position: absolute;top:22vh" v-if="isPage12InView">
     </div>
     <div class="page">
       <img src="../assets/story3/13.png" alt="" class="image13 imageType">
@@ -88,19 +109,23 @@ export default {
   },
   data() {
     return {
-      isIntersecting: false, // 用于追踪元素是否进入视口
+      isIntersecting: false, // 用于追踪元素9是否进入视口
       animationState: 0, // 0: 未触发, 1: 已经触发进入动画
-      showRouterTip: false
+      showRouterTip: false,
+      isPage11InView: false, // 表示page11是否进入视口
+      page11: [false, false, false, false,false],
+      isPage12InView:false,
     }
   },
   mounted() {
     setTimeout(() => {
       this.imageTroll();
       this.sparkling();
-      this.setupIntersectionObserver();
-      this.angry();
       ScrollTrigger.refresh();
     }, 500);
+    this.setupIntersectionObserver();
+    this.angry();
+    this.setupScrollTriggers11();
     window.addEventListener('keydown', this.handleSpacePress);
     window.addEventListener('scroll', this.handleScrollToBottom);
   },
@@ -149,7 +174,7 @@ export default {
         start: 'top 70%',
         scrub: true,
         animation:
-          gsap.fromTo('.image3Hen', { scale: 1, x: 0 }, { scale: 1.2, x: 100 })
+          gsap.fromTo('.image3Hen', { scale: 1, x: 0 }, { scale: 1.3, x: 200 })
       });
       ScrollTrigger.create({
         trigger: '.image3Egg',
@@ -254,22 +279,6 @@ export default {
         animation:
           gsap.fromTo('.image8', { scale: 1.4 }, { scale: 0.8 })
       })
-      // ScrollTrigger.create({
-      //   trigger: '.image9',
-      //   start: 'top 100%',
-      //   end: 'top 20%',
-      //   scrub: true,
-      //   animation:
-      //     gsap.fromTo('.image9', { scale: 0.8 }, { scale: 1.4 })
-      // })
-      // ScrollTrigger.create({
-      //   trigger: '.image9',
-      //   start: 'bottom 70%',
-      //   end: 'bottom 20%',
-      //   scrub: true,
-      //   animation:
-      //     gsap.fromTo('.image9', { scale: 1.4 }, { scale: 0.8 })
-      // })
       ScrollTrigger.create({
         trigger: '.image10',
         start: 'top 100%',
@@ -286,22 +295,38 @@ export default {
         animation:
           gsap.fromTo('.image10', { scale: 1.3 }, { scale: 0.8 })
       })
-      ScrollTrigger.create({
-        trigger: '.image11',
-        start: 'top 100%',
-        end: 'top 20%',
-        scrub: true,
-        animation:
-          gsap.fromTo('.image11', { scale: 0.8 }, { scale: 1.4 })
-      })
-      ScrollTrigger.create({
-        trigger: '.image11',
-        start: 'bottom 70%',
-        end: 'bottom 20%',
-        scrub: true,
-        animation:
-          gsap.fromTo('.image11', { scale: 1.4 }, { scale: 0.8 })
-      })
+      // ScrollTrigger.create({
+      //   trigger: '.image11-left',
+      //   start: 'top 100%',
+      //   end: 'top 20%',
+      //   scrub: true,
+      //   animation:
+      //     gsap.fromTo('.image11-left', { scale: 0.8 }, { scale: 1.4 })
+      // })
+      // ScrollTrigger.create({
+      //   trigger: '.image11-left',
+      //   start: 'bottom 70%',
+      //   end: 'bottom 20%',
+      //   scrub: true,
+      //   animation:
+      //     gsap.fromTo('.image11-left', { scale: 1.4 }, { scale: 0.8 })
+      // })
+      // ScrollTrigger.create({
+      //   trigger: '.image11',
+      //   start: 'top 100%',
+      //   end: 'top 20%',
+      //   scrub: true,
+      //   animation:
+      //     gsap.fromTo('.image11', { scale: 1.0 }, { scale: 2.5 })
+      // })
+      // ScrollTrigger.create({
+      //   trigger: '.image11',
+      //   start: 'bottom 70%',
+      //   end: 'bottom 20%',
+      //   scrub: true,
+      //   animation:
+      //     gsap.fromTo('.image11', { scale: 2.5 }, { scale: 1.0 })
+      // })
       ScrollTrigger.create({
         trigger: '.image12',
         start: 'top 100%',
@@ -407,38 +432,6 @@ export default {
         opacity: "0.6"
       });
     },
-    // setupIntersectionObserver() {
-    //   const observerOptions = {
-    //     rootMargin: "0px",
-    //     threshold: 0.1, // 当元素顶部到达视口的60%时触发
-    //   };
-    //   const callback = (entries, observer) => {
-    //     entries.forEach((entry) => {
-    //       if (entry.isIntersecting) {
-    //         // 获取图片元素并先移除隐藏类，再添加动画类
-    //         const parentContainer = entry.target;
-    //         const imageElement = parentContainer.querySelector(".image9");
-    //         const imageElement1 = parentContainer.querySelector(".image9-left");
-    //         const imageElement2 = parentContainer.querySelector(".image9-right");
-    //         if (imageElement) {
-    //           imageElement.classList.add("animate__animated", "animate__lightSpeedInLeft");
-    //           imageElement.classList.remove("hidden");
-    //           imageElement1.classList.remove("hidden");
-    //           imageElement2.classList.remove("hidden");
-    //           imageElement.classList.remove("animate__animated", "animate__lightSpeedInLeft");//移除，这是为了下一次进入能够再展示
-    //           setTimeout(() => {
-    //             imageElement.classList.add("animate__animated", "animate__lightSpeedInLeft");
-    //             imageElement1.classList.add("hidden");
-    //             imageElement2.classList.add("hidden");
-    //           }, 1000);
-    //         }
-    //       }
-    //     });
-    //   };
-
-    //   const observer9in = new IntersectionObserver(callback, observerOptions);
-    //   observer9in.observe(this.$refs.pageElement); // 观察特定的.page元素
-    // },
     setupIntersectionObserver() {
       const observerOptions = {
         rootMargin: "0px",
@@ -506,6 +499,81 @@ export default {
         repeat: -1,
         yoyo: true,
         rotate: -2,
+      });
+    },
+    setupScrollTriggers11() {
+      const page11 = this.$refs.page11;
+      const page12 = this.$refs.page12; 
+      ScrollTrigger.create({
+        trigger: page11,
+        start: "top 40%", // 进入视口的起始位置
+        onEnter: () => {
+          this.isPage11InView = true;
+          console.log("true1");
+          setTimeout(() => {
+            this.page11[0] = true;
+            setTimeout(() => {
+              this.page11[2] = true;
+              setTimeout(() => {
+                this.page11[3] = true;
+                setTimeout(() => {
+                  this.page11[1] = true;
+                  setTimeout(() => {
+                    this.page11[4]=true;
+                  }, 100);
+                }, 200);
+              }, 300);
+            }, 300);
+          }, 200);
+
+          // 这里可以添加触发进入视口后的动画或其他逻辑
+        },
+        onLeave: () => {
+          this.isPage11InView = false;
+          this.page11 = [false, false, false, false];
+          // 这里可以添加离开视口后的逻辑
+        },
+        onEnterBack: () => {
+          this.isPage11InView = true;
+          setTimeout(() => {
+            this.page11[0] = true;
+            setTimeout(() => {
+              this.page11[2] = true;
+              setTimeout(() => {
+                this.page11[3] = true;
+                setTimeout(() => {
+                  this.page11[1] = true;
+                  setTimeout(() => {
+                    this.page11[4]=true;
+                  }, 100);
+                }, 200);
+              }, 300);
+            }, 300);
+          }, 200);
+          // 这里可以添加重新进入视口后的逻辑
+        },
+        onLeaveBack: () => {
+          this.isPage11InView = false;
+        }
+      });
+      ScrollTrigger.create({
+        trigger: page12,
+        start: "top 20%", // 进入视口的起始位置
+        onEnter: () => {
+          setTimeout(() => {
+            this.isPage12InView = true;
+          }, 100);
+          
+        },
+      });
+      ScrollTrigger.create({
+        trigger: page12,
+        start: "start 20%", // 进入视口的起始位置
+        onEnter: () => {
+          setTimeout(() => {
+            this.isPage12InView = true;
+          }, 100);
+        },
       });
     },
     handleScrollToBottom() {

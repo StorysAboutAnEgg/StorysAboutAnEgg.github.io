@@ -136,9 +136,14 @@
   <transition name="fade-in-up">
       <img v-if="stage === 14 && newClickCount > 33" src="../assets/story2/文字14.png" alt="文字14" class="dialog2-image">
   </transition>
-
+  
+  <transition name="fade-in-down">
   <button v-if="showEggButton" class="action-button" @click="showNewImage"></button>
-  </div>
+  </transition> 
+  <transition name="fade-in-down">
+  <button v-if="showBackEggButton" class="action-back-button" @click="showNewImage"></button>
+ </transition> 
+ </div>
 </template>
 
 <script>
@@ -151,6 +156,7 @@ export default {
       newImageVisible: false,
       showEggButton: false,
       showMusic1: false,
+      showBackEggButton:false,
       stage: 0
     };
   },
@@ -247,10 +253,17 @@ export default {
       }else if (this.stage === 13 && this.newClickCount === 31) {
         this.stage = 14;
         this.newClickCount++;
-      }else if (this.stage === 14 && this.newClickCount < 34) {
+      }else if (this.stage === 14 && this.newClickCount < 33) {
         this.newClickCount++;
       }
-
+      else if (this.stage === 14 && this.newClickCount === 33) {
+        this.newClickCount++;
+        this.showEggButton = false;
+        this.showBackEggButton = true;
+      }else if (this.stage === 14 && this.newClickCount === 34) {
+        this.$router.push('/menu');
+      }
+      
     }
   }
 };
@@ -258,7 +271,6 @@ export default {
 
 <style scoped>
 .about {
-
   background-color: rgb(239, 232, 224);
   min-height: 100vh;
   min-width: 100vw;
@@ -272,8 +284,7 @@ export default {
 
 .text-image,
 .dialog-image,
-.dialog2-image,
-.egg-image {
+.dialog2-image{
   position: absolute;
   max-width: 100%;
   height: auto;
@@ -300,6 +311,7 @@ export default {
 .egg-image {
   top: 50%;
   left: 50%;
+
 }
 
 .bouncing-music-image{
@@ -540,7 +552,7 @@ export default {
   0% {
     transform: translateY(0);
   }
-  0% {
+  50% {
     transform: translateY(-5%); 
   }
   100%{
@@ -565,6 +577,26 @@ export default {
   transform: scale(1.5); 
   cursor:url("../assets/egg2cursor.png"),auto;
 }
+
+
+.action-back-button {
+  position: absolute;
+  bottom: 210px;
+  right: 90px;
+  width: 130px;
+  height: 130px;
+  background: url('../assets/story2/eggbackbutton.png') no-repeat center center;
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease; 
+}
+
+.action-back-button:hover {
+  transform: scale(1.5); 
+  cursor:url("../assets/egg2cursor.png"),auto;
+}
+
 
 .action-button:focus {
   outline: none;
