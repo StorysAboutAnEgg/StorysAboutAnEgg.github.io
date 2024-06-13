@@ -2,73 +2,79 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
-
+    
     <div class="body">
-      <div class="backg"></div>
-
-      <div class="shell">
-        <div class="box">
-          <div class="images">
-            <img src="../assets/menu/story1_1.png" />
-          </div>
-          <div class="content" @click="goto('/story1')">
-            <img src="../assets/menu/story1_2.png" alt="">
-          </div>
-        </div>
-
-        <div class="box">
-          <div class="images">
-            <img src="../assets/menu/story2_1.png">
-          </div>
-          <div class="content" @click="goto('/story2')">
-            <img src="../assets/menu/story2_2.png" alt="">
-          </div>
-        </div>
-
-        <div class="box">
-          <div class="images">
-            <img src="../assets/menu/story3_1.png" style="scale: 1.2;">
-          </div>
-          <div class="content" @click="goto('/story3')">
-            <img src="../assets/menu/story3_2.png" alt="" style="scale: 1.1;">
-          </div>
-        </div>
-
-        <div class="box">
-          <div class="images">
-            <img src="../assets/menu/story4_1.png">
-          </div>
-          <div class="content" @click="goto('/story4')">
-            <img src="../assets/menu/story4_2.png" alt="">
-          </div>
-        </div>
+      <div class="backg">
+        <!-- <img src="../assets/首页8/1.jpg"> -->
       </div>
 
       <div class="shell">
         <div class="box">
           <div class="images">
-            <img src="../assets/menu/story5_1.png">
+            <img src="/首页8/黑蛋.png" />
+          </div>
+          <div class="content" @click="goto('/story1')">
+            <h2>ZeenChin</h2>
+            <p>The style in the painting integrates temptation, fantasy and strangeness
+            </p>
+          </div>
+        </div>
+
+        <div class="box">
+          <div class="images">
+            <img src="../assets/story2/封面.png" >
+          </div>
+          <div class="content" @click="goto('/story2')">
+            <img src="../assets/story2/封面遮罩.png" alt="">
+          </div>
+        </div>
+
+        <div class="box">
+          <div class="images">
+            <img src="../assets/story3/封面蛋.png" style="scale: 1.2;">
+          </div>
+          <div class="content" @click="goto('/story3')">
+            <img src="../assets/story3/封面遮罩.png" alt="" style="scale: 1.1;">
+          </div>
+        </div>
+
+        <div class="box">
+          <div class="images">
+            <img src="../assets/story4/封面.png" >
+          </div>
+          <div class="content" @click="goto('/story4')">
+            <img src="../assets/story4/封面遮罩.png" alt="">
+          </div>
+        </div>
+
+        <div class="box">
+          <div class="images">
+            <img src="/首页8/白蛋.png">
           </div>
           <div class="content" @click="goto('/story5')">
-            <img src="../assets/menu/story5_2.png" alt="">
+            <h2>ZeenChin</h2>
+            <p>The style in the painting integrates temptation, fantasy and strangeness
+            </p>
           </div>
         </div>
 
         <div class="box">
           <div class="images">
-            <img src="../assets/menu/story6_1.png">
+            <img src="../assets/story6/封面软蛋.png" >
           </div>
           <div class="content" @click="goto('/story6')">
-            <img src="../assets/menu/story6_2.png" alt="">
+            <img src="../assets/story6/封面遮罩洋葱.png" alt="">
           </div>
         </div>
 
         <div class="box">
           <div class="images">
-            <img src="../assets/menu/story7_1.png">
+            <img src="../assets/story7/口号.png">
           </div>
           <div class="content" @click="goto('/story7')">
-            <img src="../assets/menu/story7_2.png" alt="">
+            <p>我社死了
+              ! ! !
+            </p>
           </div>
         </div>
       </div>
@@ -93,7 +99,6 @@ export default {
 
 .body {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
@@ -107,6 +112,7 @@ export default {
   left: 0px;
   top: 0px;
   background: url("../assets/首页8/1.jpg");
+  /* background-repeat: no-repeat; */
   background-size: cover;
   -webkit-filter: blur(5px);
   -moz-filter: blur(5px);
@@ -144,13 +150,13 @@ export default {
 }
 
 /* 当鼠标所有卡片的父元素点shell上时，
-        所有卡片像Y轴翻转30度 */
+        所有卡片像Y轴翻转20度 */
 .shell:hover .box {
-  transform: rotateY(30deg);
+  transform: rotateY(20deg);
 }
 
 /* 当鼠标悬浮在当前卡片上时，当前卡片的翻转角度为0，
-      并放大一点二五倍，加个阴影 */
+        并放大一点二五倍，加个阴影 */
 .shell .box:hover {
   transform: rotateY(0deg) scale(1.25);
   box-shadow: 0 25px 40px rgba(0, 0, 0, 0.7);
@@ -158,13 +164,13 @@ export default {
 }
 
 /* 当鼠标悬浮在卡片上时，
-        当前卡片后面的所有卡片全部都反向翻转负30度 */
+        当前卡片后面的所有卡片全部都反向翻转负20度 */
 .shell .box:hover~.box {
-  transform: rotateY(-30deg);
+  transform: rotateY(-20deg);
 }
 
 .shell .box .images img {
-  width: 90%;
+  width: 100%;
   left: 0;
   top: 0;
   right: 0;
@@ -190,6 +196,19 @@ export default {
   text-align: center;
 }
 
+.shell .box .content p {
+  font-family: "Ma Shan Zheng", cursive;
+  font-weight: 400;
+  font-style: normal;
+  color: #a14e25;
+
+  opacity: 0;
+  transition: all .4s ease-in-out .4s;
+  font-size: 50px;
+  transform: translateY(100px);
+  /* background-color: rgba(255, 255, 255, 0.7); */
+}
+
 .shell .box:hover .content p {
   opacity: 1;
   /* transform: translateY(100px); */
@@ -204,7 +223,7 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 90%;
+  max-width: 100%;
   max-height: 100%;
 }
 
