@@ -70,7 +70,7 @@
       <img src="../assets/story3/12-light.png" alt="" id="" class="light">
       <img src="../assets/story3/12-star.png" alt="" id="" class="star">
       <img src="../assets/story3/12-字.png" alt="" class="animate__animated animate__fadeInDown"
-      style="position: absolute;top:22vh" v-if="isPage12InView">
+      style="position: absolute;top:27vh" v-if="isPage12InView">
     </div>
     <div class="page">
       <img src="../assets/story3/13.png" alt="" class="image13 imageType">

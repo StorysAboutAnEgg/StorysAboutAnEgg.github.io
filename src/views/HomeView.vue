@@ -1,14 +1,4 @@
 <template>
-  <!-- <div class="all"> -->
-  <!-- <transition leave-active-class="animate__animated animate__fadeOutUpBig">
-    <div class="p0" v-show="ifshow" @click="disapear">
-      <img class="mainback" src="../assets/首页8/1.jpg" />
-      <div class="move" style="position:absolute">
-        <eggrain />
-      </div>
-    </div>
-  </transition> -->
-
   <div class="story">
     <!-- v-show="ifshow2" -->
     <section class="p1" style="height: 100vh;">
