@@ -36,7 +36,9 @@
         v-if="animateShow[currentPage] > 0" class="animate__animated animate__flipInX">
     </div>
     <div v-if="isCurrentPage[3]">
-      <img src="@/assets/story6/4.png" alt="" class="main-img animate__animated" :class="{
+      <img src="@/assets/story6/4.png" alt="" 
+      class="main-img animate__animated" 
+      :class="{
         'animate__zoomInLeft': fromLeftIn[3],
         'animate__zoomInRight': fromRightIn[3],
         'animate__zoomOutLeft': fromLeftOut[3],
